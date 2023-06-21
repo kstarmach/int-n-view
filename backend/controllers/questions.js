@@ -6,20 +6,8 @@ questionsRouter.post('/', async (req, res) => {
         const { question, answer } = req.body;
 
         const newQuestion = new Question({
-            question: {
-                type: String,
-                required: true
-            },
-            answer: {
-                type: String,
-                required: true
-            },
-            created_at: {
-                type: Date
-            },
-            update_at: {
-                type: Date
-            }
+            question,
+            answer,
         })
 
         const savedQuestion = await newQuestion.save();
@@ -47,6 +35,31 @@ questionsRouter.get('/:id', async (req, res) => {
         const singleQuestion = await Question.findById(id);
 
         res.json(singleQuestion);
+    } catch (error) {
+        console.error('Error retrieving items:', error);
+        res.status(404).json({ error: 'Something went wrong with SINGLE GET!' })
+    }
+})
+
+questionsRouter.patch('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const body = req.body;
+
+        const patchedQuestion = await Question.findByIdAndUpdate(id, body, { new: true });
+
+        res.status(200).json(patchedQuestion);
+    } catch (error) {
+        console.error('Error retrieving items:', error);
+        res.status(404).json({ error: 'Something went wrong with SINGLE GET!' })
+    }
+})
+
+questionsRouter.delete('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        await Question.findByIdAndDelete(id);
+        res.status(400).json('question successfully deleted!');
     } catch (error) {
         console.error('Error retrieving items:', error);
         res.status(404).json({ error: 'Something went wrong with SINGLE GET!' })
