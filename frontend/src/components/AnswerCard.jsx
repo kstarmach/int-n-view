@@ -1,13 +1,13 @@
-const AnswerCard = () => {
-    return (
-        <div className="answer">
-            42
+const AnswerCard = ({ showAnswer }) => {
+    if (showAnswer) {
 
-
-
-
-        </div>
-    )
+        return (
+            <div className="answer" >
+                42
+            </div>
+        )
+    }
+    return 
 }
 
 export default AnswerCard;
