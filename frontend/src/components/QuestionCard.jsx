@@ -1,7 +1,7 @@
-const QuestionCard = () => {
+const QuestionCard = ({ data }) => {
     return (
         <div className="question">
-            What is the answer to life, the universe, and everything?
+            {data.question}
         </div>
     )
 }

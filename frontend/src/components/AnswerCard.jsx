@@ -1,13 +1,13 @@
-const AnswerCard = ({ showAnswer }) => {
+const AnswerCard = ({ showAnswer, data }) => {
     if (showAnswer) {
 
         return (
             <div className="answer" >
-                42
+                {data.answer}
             </div>
         )
     }
-    return 
+    return
 }
 
 export default AnswerCard;
