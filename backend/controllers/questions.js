@@ -29,6 +29,21 @@ questionsRouter.get('/', async (req, res) => {
     }
 })
 
+questionsRouter.get('/random', async (req, res) => {
+    try {
+        const allQuestions = await Question.find();
+
+        // Select a random question
+        const randomQuestion = allQuestions[Math.floor(Math.random() * allQuestions.length)];
+
+        res.json(randomQuestion);
+    } catch (error) {
+        console.error('Error retrieving items:', error);
+        res.status(404).json({ error: 'Something went wrong with GET!' })
+    }
+});
+
+
 questionsRouter.get('/:id', async (req, res) => {
     try {
         const id = req.params.id;
