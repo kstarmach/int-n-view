@@ -14,7 +14,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/questions');
+      const response = await fetch('/questions/random');
       const jsonData = await response.json();
       setQuestions(jsonData);
     } catch (error) {
@@ -28,8 +28,8 @@ function App() {
       <div className="container">
         <div className='question-container'>
 
-          <QuestionCard data={questions[0]} />
-          <AnswerCard showAnswer={showAnswer} data={questions[0]} />
+          <QuestionCard data={questions} />
+          <AnswerCard showAnswer={showAnswer} data={questions} />
           <ButtonGroup showAnswer={showAnswer} setShowAnswer={setShowAnswer} />
         </div>
       </div>
