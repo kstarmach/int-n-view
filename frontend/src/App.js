@@ -21,16 +21,20 @@ function App() {
       console.error('Error Fetching data: ', error);
     }
   }
+
+  const nextQuestion = () => {
+    setShowAnswer(false);
+    fetchData();
+  }
+
   if (questions) {
-
-
     return (
       <div className="container">
         <div className='question-container'>
 
           <QuestionCard data={questions} />
           <AnswerCard showAnswer={showAnswer} data={questions} />
-          <ButtonGroup showAnswer={showAnswer} setShowAnswer={setShowAnswer} />
+          <ButtonGroup showAnswer={showAnswer} setShowAnswer={setShowAnswer} nextQuestion={nextQuestion} />
         </div>
       </div>
     );

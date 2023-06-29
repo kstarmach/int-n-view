@@ -1,6 +1,8 @@
 
 
-const ButtonGroup = ({ showAnswer, setShowAnswer }) => {
+const ButtonGroup = ({ showAnswer, setShowAnswer, nextQuestion }) => {
+
+
     if (showAnswer) {
         return (
             <table className="button-group">
@@ -9,22 +11,22 @@ const ButtonGroup = ({ showAnswer, setShowAnswer }) => {
                         <td>
                             <label htmlFor="again">&lt;1m</label>
                             <br />
-                            <button id="again">Again</button>
+                            <button id="again" onClick={() => nextQuestion()}>Again</button>
                         </td>
                         <td>
                             <label htmlFor="hard">&lt;6m</label>
                             <br />
-                            <button id="hard">Hard</button>
+                            <button id="hard" onClick={() => nextQuestion()}>Hard</button>
                         </td>
                         <td>
                             <label htmlFor="good">&lt;10m</label>
                             <br />
-                            <button id="good">Good</button>
+                            <button id="good" onClick={() => nextQuestion()}>Good</button>
                         </td>
                         <td>
                             <label htmlFor="easy">4d</label>
                             <br />
-                            <button id="easy">Easy</button>
+                            <button id="easy" onClick={() => nextQuestion()}>Easy</button>
                         </td>
                     </tr>
                 </tbody>
