@@ -35,7 +35,7 @@ function App() {
       </div>
     );
   }
-  return
+  return (<div>Cannot connect to API...</div>)
 }
 
 export default App;
