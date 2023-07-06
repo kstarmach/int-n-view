@@ -1,9 +1,11 @@
+import ReactMarkdown from 'react-markdown';
+
 const AnswerCard = ({ showAnswer, data }) => {
     if (showAnswer) {
 
         return (
             <div className="answer" >
-                {data.answer}
+                <ReactMarkdown>{data.answer}</ReactMarkdown>
             </div>
         )
     }

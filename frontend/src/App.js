@@ -30,12 +30,11 @@ function App() {
   if (questions) {
     return (
       <div className="container">
-        <div className='question-container'>
-
+        <div className='block'>
           <QuestionCard data={questions} />
           <AnswerCard showAnswer={showAnswer} data={questions} />
-          <ButtonGroup showAnswer={showAnswer} setShowAnswer={setShowAnswer} nextQuestion={nextQuestion} />
         </div>
+        <ButtonGroup showAnswer={showAnswer} setShowAnswer={setShowAnswer} nextQuestion={nextQuestion} />
       </div>
     );
   }

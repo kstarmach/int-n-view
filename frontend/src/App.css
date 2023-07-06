@@ -6,14 +6,19 @@ body {
 
 .container {
     display: flex;
+    flex-direction: row;
+    flex-flow: column;
     align-items: center;
     justify-content: center;
     height: 70vh;
 }
 
-.question-container {
+.block {
     display: block;
+    justify-content: center;
 }
+
+
 
 .question {
     border-bottom: 2px black solid;
@@ -22,16 +27,18 @@ body {
     font-weight: 700;
     margin-bottom: 20px;
     padding: 20px;
+    text-align: center;
+    max-width: 75vh;
 }
 
 .answer {
     background-color: white;
     border: 1px white solid;
-    border-radius: 3px;
+    border-radius: 10px;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
     font-size: large;
     padding: 10px;
-    max-width: 100vh;
+    max-width: 75vh;
 }
 
 
