@@ -7,6 +7,8 @@ import QuestionCard from './components/QuestionCard';
 function App() {
   const [showAnswer, setShowAnswer] = useState(false);
   const [questions, setQuestions] = useState(null);
+  const [currentQuestion, setCurrentQuestion] = useState(null);
+
 
   useEffect(() => {
     fetchData();
@@ -17,22 +19,28 @@ function App() {
       const response = await fetch('/questions/random');
       const jsonData = await response.json();
       setQuestions(jsonData);
+      getRandomQuestion(jsonData);
     } catch (error) {
       console.error('Error Fetching data: ', error);
     }
   }
 
+  const getRandomQuestion = (questions) => {
+    const filteredArray = questions.filter((question) => question !== currentQuestion);
+    setCurrentQuestion(filteredArray[Math.floor(Math.random() * filteredArray.length)]);
+  };
+
   const nextQuestion = () => {
     setShowAnswer(false);
-    fetchData();
+    getRandomQuestion(questions);
   }
 
   if (questions) {
     return (
       <div className="container">
         <div className='block'>
-          <QuestionCard data={questions} />
-          <AnswerCard showAnswer={showAnswer} data={questions} />
+          <QuestionCard question={currentQuestion.question} />
+          <AnswerCard showAnswer={showAnswer} answer={currentQuestion.answer} />
         </div>
         <ButtonGroup showAnswer={showAnswer} setShowAnswer={setShowAnswer} nextQuestion={nextQuestion} />
       </div>

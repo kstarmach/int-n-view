@@ -32,16 +32,26 @@ questionsRouter.get('/', async (req, res) => {
 questionsRouter.get('/random', async (req, res) => {
     try {
         const allQuestions = await Question.find();
-
-        // Select a random question
-        const randomQuestion = allQuestions[Math.floor(Math.random() * allQuestions.length)];
-
-        res.json(randomQuestion);
+        const excludedIndices = req.body.excludedIndices || []; // Set excludedIndices to an empty array if it doesn't exist in the request body
+        // Select 10 random questions
+        const randomQuestions = [];
+        while (randomQuestions.length < 10) {
+            const randomIndex = Math.floor(Math.random() * allQuestions.length);
+            if (!excludedIndices.includes(randomIndex)) {
+                const randomQuestion = allQuestions[randomIndex];
+                randomQuestions.push(randomQuestion);
+            }
+        }
+        res.json(randomQuestions);
     } catch (error) {
         console.error('Error retrieving items:', error);
         res.status(404).json({ error: 'Something went wrong with GET!' })
     }
 });
+
+
+
+
 
 
 questionsRouter.get('/:id', async (req, res) => {

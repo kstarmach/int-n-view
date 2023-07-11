@@ -1,7 +1,7 @@
-const QuestionCard = ({ data }) => {
+const QuestionCard = ({ question }) => {
     return (
         <div className="question">
-            {data.question}
+            {question}
         </div>
     )
 }
