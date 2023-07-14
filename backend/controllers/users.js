@@ -2,12 +2,22 @@ const usersRouter = require('express').Router();
 const User = require('../models/user');
 const Card = require('../models/card');
 const bcrypt = require('bcrypt');
+const emailValidator = require('email-validator');
 
 usersRouter.post('/', async (req, res) => {
     const { email, password } = req.body;
 
     if (password.length < 5) {
         return res.status(400).json({ error: "Password must be at least 5 characters long!" });
+    }
+
+    if (!emailValidator.validate(email)) {
+        return res.status(400).json({ error: "Please enter a valid email address format." });
+    }
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+        return res.status(400).json({ error: "The email you entered already exists. Please try logging in or use a different email address." });
     }
 
     const saltRounds = 10;
