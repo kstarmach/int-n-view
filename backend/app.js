@@ -8,7 +8,7 @@ const questionsRouter = require('./controllers/questions');
 const usersRouter = require('./controllers/users');
 const cardsRouter = require('./controllers/cards');
 
-mongoose.connect(config.MONGODB_URI)
+mongoose.connect(config.MONGODB_URL)
     .then(() => {
         console.log('connected to MongoDB');
     })
