@@ -1,5 +1,7 @@
 import './App.css'
 import { useEffect, useState, useCallback } from "react";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import NewQuestionForm from './pages/NewQuestionForm'
 import AnswerCard from './components/AnswerCard';
 import ButtonGroup from './components/ButtonGroup';
 import QuestionCard from './components/QuestionCard';
@@ -33,10 +35,6 @@ function App() {
     fetchData();
   }, [getRandomQuestion]);
 
-
-
-
-
   const nextQuestion = () => {
     setShowAnswer(false);
     getRandomQuestion(questions);
@@ -53,7 +51,14 @@ function App() {
       </div>
     );
   }
-  return (<div>Cannot connect to API...</div>)
+
+  return (
+    <div className="container">
+      <div className='block'>
+        <NewQuestionForm />
+      </div>
+    </div>
+  )
 }
 
 export default App;
