@@ -32,6 +32,11 @@ questionsRouter.get('/', async (req, res) => {
 questionsRouter.get('/random', async (req, res) => {
     try {
         const allQuestions = await Question.find();
+        
+        if (allQuestions.length === 0) {
+            return res.status(404).json({ error: 'Not enough elements found in the database to perform the operation.' })
+        }
+
         const excludedIndices = req.body.excludedIndices || []; // Set excludedIndices to an empty array if it doesn't exist in the request body
         // Select 10 random questions
         const randomQuestions = [];
